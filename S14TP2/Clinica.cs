@@ -29,9 +29,16 @@ namespace S14TP2
         public void agregarServicio()
         {
             string servicio = "";
-            Console.Write("Que tipo de Servicio desea agregar?");
+            Console.Write("Que tipo de Servicio desea agregar? ");
 
-            servicio = Console.ReadLine();
+            //servicio = Console.ReadLine();
+
+            do
+            {
+                Console.WriteLine("Por favor, ingrese 'laboratorio', 'medicamento' o 'internacion':");
+                servicio = Console.ReadLine().ToLower();
+
+            } while (servicio != "laboratorio" && servicio != "medicamento" && servicio != "internacion");
 
             switch (servicio.ToLower())
             {
@@ -59,8 +66,21 @@ namespace S14TP2
                     Console.WriteLine("Ingrese la cantidad de días");
                     int cantidadDias = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Ingrese el nivel de complejidad");
-                    int complejidad = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese el nivel de complejidad (1-5)");
+
+                    //int complejidad = int.Parse(Console.ReadLine());
+                    int complejidad;
+
+                    do
+                    {
+                        // Intenta convertir la entrada del usuario a un entero
+                        // Si no es válido, mostrará un mensaje de error y pedirá la entrada nuevamente.
+                        while (!int.TryParse(Console.ReadLine(), out complejidad) || complejidad < 1 || complejidad > 5)
+                        {
+                            Console.WriteLine("Por favor, ingrese un entero válido entre 1 y 5.");
+                        }
+
+                    } while (complejidad < 1 || complejidad > 5);
 
                     Laboratorio laboratorio = new Laboratorio(nombreLaboratorio, cantidadDias, complejidad);
 

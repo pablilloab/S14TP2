@@ -6,8 +6,23 @@
         {
             Clinica saludAr = new Clinica("SaludAr");
 
-            saludAr.mostrarMenuPrincipal();
-            int opcion = int.Parse(Console.ReadLine());
+            //saludAr.mostrarMenuPrincipal();
+            //int opcion = int.Parse(Console.ReadLine());
+
+            int opcion;
+
+            do
+            {
+                saludAr.mostrarMenuPrincipal();
+
+                // Intenta convertir la entrada del usuario a un entero
+                // Si no es válido, mostrará un mensaje de error y pedirá la entrada nuevamente.
+                while (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 3)
+                {
+                    Console.WriteLine("Por favor, ingrese un entero válido entre 1 y 3.");
+                }
+
+            } while (opcion < 1 || opcion > 3);
 
             while ( opcion != 3 )
             {
